@@ -110,7 +110,8 @@
               <far>100.0</far>              <!-- Maximum range (meters) -->
             </clip>
           </camera>
-
+          <topic>/camera_sensor/image_raw</topic>
+          <visualize>true</visualize>
           <update_rate>30</update_rate>          <!-- Frames per second -->
 
         </sensor>
