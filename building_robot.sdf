@@ -299,6 +299,24 @@
         <odom_publish_frequency>1</odom_publish_frequency>
         <topic>cmd_vel</topic>
       </plugin>
+      <!-- Add yaw left functionality -->
+      <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+          <match field="data">16777234</match>          <!-- Key for left arrow key -->
+        </input>
+        <output type="gz.msgs.Twist" topic="/cmd_vel">
+      linear: {x: 0.0}, angular: {z: 0.5}                                         <!-- Yaw left -->
+        </output>
+      </plugin>
+      <!-- Add yaw right functionality -->
+      <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+          <match field="data">16777236</match>          <!-- Key for left arrow key -->
+        </input>
+        <output type="gz.msgs.Twist" topic="/cmd_vel">
+      linear: {x: 0.0}, angular: {z: -0.5}                                         <!-- Yaw left -->
+        </output>
+      </plugin>
       <!-- Moving Forward-->
       <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
         <input type="gz.msgs.Int32" topic="/keyboard/keypress">
@@ -317,6 +335,16 @@
         linear: {x: -0.5}, angular: {z: 0.0}
         </output>
       </plugin>
+      <!-- brake -->
+      <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
+        <input type="gz.msgs.Int32" topic="/keyboard/keypress">
+          <match field="data">83</match>
+        </input>
+        <output type="gz.msgs.Twist" topic="/cmd_vel">
+        linear: {x: 0}, angular: {z: 0.0}
+        </output>
+      </plugin>
+      <!-- stop on collision-->
       <plugin filename="gz-sim-triggered-publisher-system" name="gz::sim::systems::TriggeredPublisher">
         <input type="gz.msgs.Boolean" topic="/wall/touched">
           <match>data: true</match>
@@ -364,5 +392,6 @@
         <enabled>true</enabled>
       </plugin>
     </model>
+
   </world>
 </sdf>
