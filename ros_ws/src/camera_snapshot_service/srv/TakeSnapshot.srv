@@ -1,0 +1,4 @@
+# TakeSnapshot.srv
+---
+bool success
+string message
