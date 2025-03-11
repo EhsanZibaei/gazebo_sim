@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.7">
+<world name="default">
+  <model name="kitchen">
+    <static>true</static>
+    <include>
+      <uri>model://ionic_interior</uri>
+      <pose>0 0 0 0 0 0</pose> 
+    </include>
+  </model>
+
+  <model name="rover">
+    <include>
+      <uri>model://ELM4_chassis</uri>
+      <pose>0 1 1 0 0 0</pose> 
+    </include>
+  </model>
+
+    <model name="arm">
+    <include>
+      <uri>model://panda_arm</uri>
+      <pose>0 0 0 0 0 0</pose> 
+    </include>
+  </model>
+
+  </world>
+</sdf>
