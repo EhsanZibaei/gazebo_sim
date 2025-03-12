@@ -9,18 +9,28 @@
     </include>
   </model>
 
-  <model name="rover">
+  <model name="rover_with_arm">
+    <!-- Include Rover Model -->
     <include>
       <uri>model://ELM4_chassis</uri>
-      <pose>0 1 1 0 0 0</pose> 
+      <name>rover</name>
+      <pose>0 0 0.5 0 0 0</pose>
     </include>
-  </model>
 
-    <model name="arm">
+    <!-- Include Robotic Arm Model -->
     <include>
       <uri>model://panda_arm</uri>
-      <pose>0 0 0 0 0 0</pose> 
+      <name>arm</name>
+      <pose>0 0 0.5 0 0 0</pose>
     </include>
+
+
+    <!-- Fixed Joint to Attach Arm to Rover -->
+    <joint name="arm_to_rover" type="fixed">
+      <parent>rover::ELM4_chassis/Base</parent>
+      <child>arm::panda_link0</child>
+      <pose>0 0 0.5 0 0 0</pose>
+    </joint>
   </model>
 
   </world>
