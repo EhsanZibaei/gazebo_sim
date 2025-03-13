@@ -88,6 +88,28 @@
           <ambient>0.6 0.6 0.7 1.0</ambient>
         </material>
       </visual>
+
+              <sensor name="camera_sensor" type="camera">
+          <pose>1 0.2 0.5 0 0 0</pose>          <!-- Position of the camera on the robot -->
+
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>            <!-- Field of view in radians -->
+            <image>
+              <width>640</width>              <!-- Image width in pixels -->
+              <height>480</height>              <!-- Image height in pixels -->
+              <format>R8G8B8</format>              <!-- Image format (RGB in this case) -->
+            </image>
+
+            <clip>
+              <near>0.1</near>              <!-- Minimum range (meters) -->
+              <far>100.0</far>              <!-- Maximum range (meters) -->
+            </clip>
+          </camera>
+          <topic>/camera_sensor/image_raw_arm</topic>
+          <visualize>true</visualize>
+          <update_rate>30</update_rate>          <!-- Frames per second -->
+
+        </sensor>
     </link>
     <link name="ELM4_chassis/FrontLeftArm">
       <pose relative_to="ELM4_chassis/FrontLeftArmJoint">0 0 0 0 0 0</pose>
@@ -757,7 +779,7 @@
         <match field="data">16777234</match> <!-- Key for left arrow key -->
       </input>
       <output type="gz.msgs.Twist" topic="/cmd_vel">
-        linear: {x: 0.0}, angular: {z: 0.5} <!-- Yaw left -->
+        linear: {x: 0.0}, angular: {z: 2} <!-- Yaw left -->
       </output>
     </plugin>
 
@@ -767,7 +789,7 @@
         <match field="data">16777236</match> <!-- Key for right arrow key -->
       </input>
       <output type="gz.msgs.Twist" topic="/cmd_vel">
-        linear: {x: 0.0}, angular: {z: -0.5} <!-- Yaw right -->
+        linear: {x: 0.0}, angular: {z: -2} <!-- Yaw right -->
       </output>
     </plugin>
 
@@ -777,7 +799,7 @@
         <match field="data">16777235</match> <!-- Key for up arrow key -->
       </input>
       <output type="gz.msgs.Twist" topic="/cmd_vel">
-        linear: {x: 0.5}, angular: {z: 0.0} <!-- Move forward -->
+        linear: {x: 2}, angular: {z: 0.0} <!-- Move forward -->
       </output>
     </plugin>
 
@@ -787,7 +809,7 @@
         <match field="data">16777237</match> <!-- Key for down arrow key -->
       </input>
       <output type="gz.msgs.Twist" topic="/cmd_vel">
-        linear: {x: -0.5}, angular: {z: 0.0} <!-- Move backward -->
+        linear: {x: -2}, angular: {z: 0.0} <!-- Move backward -->
       </output>
     </plugin>
 
